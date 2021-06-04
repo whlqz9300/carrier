@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="carrier:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="carrier-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="carrier:war exploded" />
+    </root>
+  </artifact>
+</component>

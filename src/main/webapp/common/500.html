@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="数据的搬运工"/>
+    <meta name="keywords" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>平台登录</title>
+
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/fullPage.js/2.9.4/jquery.fullpage.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/fullPage.js/2.9.4/jquery.fullpage.js"></script>
+    <script src="assets/version.js"></script>
+
+    <link rel="stylesheet" href="../assets/css/main.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div id="fullPage">
+    <!--Page One-->
+    <section class="navigation-bar" style="background-color: #ffffff;margin-bottom: 30px;">
+        <div class="container">
+            <div class="clearfix">
+                <div class="pull-left">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <a class="navbar-brand" href="#">
+                            <img src="http://cloudresource-1251063063.costj.myqcloud.com/image/yomail_logo@1x.png" class="img-responsive" alt="">
+                            <span style="position: relative;top: -38px;left: 60px;color: #0088e9;font-size: 25px;">Data Carrier</span>
+                        </a>
+                    </div>
+
+
+                </div>
+                <div class="pull-right small-centered">
+                    <div id="navigation">
+                        <div class="navbar navbar-default" role="navigation">
+                            <div class="collapse navbar-collapse" >
+                                <ul class="nav navbar-nav">
+                                    <li><a title="首页" href="index.html">首页</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container white-block">
+            <h2 class="form-signin-heading">500</h2>
+            <div class="row">
+                <div class="col-sm-2">
+                    系统错误
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $("#login-btn").click(function () {
+            $.ajax({
+                method:'post',
+                url:'/user/login',
+                data:$('form').serialize(),
+                success:function (response) {
+                    if(response.success){
+                        window.location.href="test3.html"
+                    }else{
+                        alert(response.message);
+                    }
+                }
+            })
+        })
+    });
+</script>
+</html>

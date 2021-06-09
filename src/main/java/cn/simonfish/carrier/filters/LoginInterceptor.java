@@ -3,6 +3,7 @@ package cn.simonfish.carrier.filters;
 import cn.simonfish.carrier.common.LoginInfo;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
+import com.jfinal.core.Controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,11 +27,13 @@ public class LoginInterceptor implements Interceptor {
     public void intercept(Invocation invocation) {
         String actionKey = invocation.getActionKey();
         if(actionKey.startsWith("/view/") && !escapeKeys.contains(actionKey)){
-            LoginInfo loginInfo = (LoginInfo)invocation.getController().getSessionAttr(LoginInfo.SESSION_KEY);
+            Controller controller = invocation.getController();
+            LoginInfo loginInfo = (LoginInfo)controller.getSessionAttr(LoginInfo.SESSION_LOGIN);
             //如果还没有登录,就跳转到登录页面
             if(loginInfo == null){
+                controller.setSessionAttr(LoginInfo.SESSION_LAST_URL,invocation.getActionKey());
                 logger.info("未登录，跳转到登录页面。原页面为:{}",invocation.getActionKey());
-                invocation.getController().redirect("/view/user/login");
+                controller.redirect("/view/user/login");
                 return;
             }
         }

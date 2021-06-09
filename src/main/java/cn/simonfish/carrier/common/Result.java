@@ -12,6 +12,10 @@ public class Result {
 
     private Object data;
 
+    public Result(boolean success){
+        this.code = (success)?200:500;
+    }
+
     public Result(int code ,String message){
         this.code = code;
         this.message = message;
